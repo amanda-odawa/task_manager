@@ -1,22 +1,21 @@
-# Ignore Python cache files
-__pycache__/
-*.pyc
-*.pyo
+# # Ignore Python cache files
+# # __pycache__/
+# *.pyc
+# *.pyo
 
-# Ignore virtual environment files
-env/
-.venv/
-Pipfile.lock  # Not needed if using venv
+# # Ignore virtual environment files
+# # env/
+# # .venv/
 
-# Ignore database files
-*.db
-*.sqlite3
+# # Ignore database files
+# *.db
+# *.sqlite3
 
-# Ignore Alembic migrations (but keep versions)
-migrations/  
-!migrations/versions/  # Allow migration history
+# # Ignore Alembic migrations (but keep versions)
+# # migrations/  
+# # !migrations/versions/  # Allow migration history
 
-# Ignore OS-specific files
-.DS_Store  # macOS
-Thumbs.db  # Windows
+# # Ignore OS-specific files
+# .DS_Store  # macOS
+# Thumbs.db  # Windows
 
