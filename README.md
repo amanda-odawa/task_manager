@@ -66,7 +66,6 @@ python -m src.cli
 | `assign-task`          | Assign a task to a user                          |
 | `filter-tasks`         | Filter tasks by priority, due date, or category  |
 
----
 
 #### **User Commands**
 | Command                 | Description                                      |
@@ -76,7 +75,6 @@ python -m src.cli
 | `assign-task`          | Assign a task to a user                          |
 | `show-user-assignments`| Display all tasks assigned to each user          |
 
----
 
 #### **Category Commands**
 | Command                | Description                                      |
