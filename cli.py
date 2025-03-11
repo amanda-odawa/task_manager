@@ -1,8 +1,7 @@
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
+from database import engine
 import click
 from models import Task, Category, User
-from database import engine
 
 SessionLocal = sessionmaker(bind = engine)
 
@@ -143,7 +142,6 @@ def delete_task(task_id):
 @click.option('--due_date', prompt='New Due Date (YYYY-MM-DD) (Leave blank to keep unchanged)', default='', required=False)
 @click.option('--category_id', prompt='New Category ID (Leave blank to keep unchanged)', default=None, type=int, required=False)
 def update_task(task_id, name, priority, due_date, category_id):
-    '''Update task details'''
     session = SessionLocal()
     task = session.query(Task).filter(Task.id == task_id).first()
     
