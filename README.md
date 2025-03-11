@@ -46,15 +46,15 @@ Built using Python, Click, and SQLAlchemy ORM, this project ensures persistent d
     pip install -r requirements.txt
     ```
 6. Run migrations(Setup database)
-    ```
+    ```bash
     python -m alembic upgrade head
     ```
 
 ### Usage
 To run the CLI, use:
  ```bash
-python -m src.cli 
-```
+ python -m src.cli 
+ ```
 #### **Task Commands**
 | Command                 | Description                                      |
 |-------------------------|--------------------------------------------------|
