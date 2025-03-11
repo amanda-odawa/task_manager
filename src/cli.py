@@ -1,7 +1,7 @@
 from sqlalchemy.orm import sessionmaker
-from database import engine
+from src.main import engine
 import click
-from models import Task, Category, User
+from src.models import Task, Category, User
 
 SessionLocal = sessionmaker(bind = engine)
 

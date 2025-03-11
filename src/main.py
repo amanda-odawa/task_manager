@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base
+from src.models import Base
 
 # Database connection
 engine = create_engine('sqlite:///task_manager.db')
