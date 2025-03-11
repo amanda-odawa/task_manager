@@ -10,4 +10,4 @@ SessionLocal = sessionmaker(bind = engine)
 
 # Create tables
 Base.metadata.create_all(engine)
-print("Task Manager Initialized!")
+# print("Task Manager Initialized!")
