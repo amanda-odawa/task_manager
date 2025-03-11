@@ -1,6 +1,6 @@
 How to Use It
 Run the CLI:
-python cli.py
+python src.cli.py
 Add a Task:
 python cli.py add-task
 (It will prompt for name, due date, priority, category, and user ID)
@@ -52,3 +52,7 @@ python -m src.cli list-tasks
 
 ✅ Mark Task as Completed
 python -m src.cli mark-task-completed
+
+🔹 Filtering Tasks
+✅ Filter by Priority
+python -m src.cli filter-tasks

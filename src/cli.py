@@ -73,8 +73,8 @@ def list_users():
 
 # Assign task to user
 @cli.command()
-@click.option('--user', prompt='User name')
-@click.option('--task_id', prompt='Task Id', type=int)
+@click.option('--user', prompt = 'User name')
+@click.option('--task_id', prompt = 'Task Id', type = int)
 def assign_task(user, task_id):
     session = SessionLocal()
     user_obj = session.query(User).filter(User.name == user).first()
@@ -147,7 +147,7 @@ def add_task(name, due_date, priority, category):
 
 # Delete a task
 @cli.command()
-@click.option('--task_id', prompt='Task ID to delete', type = int)
+@click.option('--task_id', prompt='Task Id to delete', type = int)
 def delete_task(task_id):
     session = SessionLocal()
     task = session.query(Task).filter(Task.id == task_id).first()
@@ -164,10 +164,10 @@ def delete_task(task_id):
 # Update a task
 @cli.command()
 @click.option('--task_id', prompt='Task Id to update', type=int)
-@click.option('--name', prompt='New task name (Leave blank to keep unchanged)', default='', required=False)
-@click.option('--priority', prompt='New priority (High, Medium, Low) (Leave blank to keep unchanged)', default='', required=False)
-@click.option('--due_date', prompt='New due date (YYYY-MM-DD) (Leave blank to keep unchanged)', default='', required=False)
-@click.option('--category_id', prompt='New category Id (Leave blank to keep unchanged)', default=None, type=int, required=False)
+@click.option('--name', prompt='New task name (Leave blank to keep unchanged)', default = '', required = False)
+@click.option('--priority', prompt='New priority (High, Medium, Low) (Leave blank to keep unchanged)', default = '', required = False)
+@click.option('--due_date', prompt='New due date (YYYY-MM-DD) (Leave blank to keep unchanged)', default = '', required = False)
+@click.option('--category_id', prompt='New category Id (Leave blank to keep unchanged)', default = None, type = int, required = False)
 def update_task(task_id, name, priority, due_date, category_id):
     session = SessionLocal()
     task = session.query(Task).filter(Task.id == task_id).first()
@@ -176,7 +176,6 @@ def update_task(task_id, name, priority, due_date, category_id):
         click.echo('Task not found.')
         session.close()
         return
-
     if name:
         task.name = name
     if priority:
@@ -221,26 +220,49 @@ def mark_task_completed(task_id):
 
     session.close()
 
-# Filter tasks by priority, due date or category
+# Filter tasks by priority, due date, or category
 @cli.command()
-@click.option('--filter_by', type = click.Choice(['priority', 'due_date', 'category']), prompt='Filter by (priority/due_date/category)')
-@click.option('--value', prompt='Filter value')
-def filter_tasks(filter_by, value):
+@click.option('--filter_by', type=click.Choice(['priority', 'due_date', 'category']),prompt = "Choose filter")
+def filter_tasks(filter_by):
     session = SessionLocal()
-
+    
     if filter_by == 'priority':
-        tasks = session.query(Task).filter(Task.priority == value).all()
+        value = click.prompt("Choose priority", type = click.Choice(['Low', 'Medium', 'High']))
     elif filter_by == 'due_date':
-        tasks = session.query(Task).filter(Task.due_date == value).all()
+        value = click.prompt("Enter due date (YYYY-MM-DD)")
     elif filter_by == 'category':
-        tasks = session.query(Task).join(Category).filter(Category.name == value).all()
-    
-    if not tasks:
-        click.echo('No tasks found.')
-    else:
+        categories = session.query(Category.name).all()
+        category_names = [cat[0] for cat in categories] if categories else []
+        if category_names:
+            value = click.prompt("Choose category", type = click.Choice(category_names))
+        else:
+            click.echo("No categories found.")
+            session.close()
+            return
+
+    filters = {
+        'priority': Task.priority == value,
+        'due_date': Task.due_date == value,
+        'category': Category.name == value
+    }
+
+    query = session.query(Task)
+    if filter_by == 'category':
+        query = query.join(Category)
+
+    tasks = query.filter(filters[filter_by]).all()
+    if tasks:
+        click.echo('-' * 40)
         for task in tasks:
-            click.echo(f'ID: {task.id}, Name: {task.name}, Priority: {task.priority}, Due: {task.due_date}, Status: {task.status}')
-    
+            click.echo(f'Task Id: {task.id}')
+            click.echo(f'Task: {task.name}')
+            click.echo(f'Due: {task.due_date.strftime("%Y-%m-%d")}')
+            click.echo(f'Priority: {task.priority}')
+            click.echo(f'Status: {task.status}')
+            click.echo('-' * 40)
+    else:
+        click.echo("No tasks found.")
+
     session.close()
 
 if __name__ == '__main__':
