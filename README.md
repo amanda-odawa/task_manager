@@ -33,8 +33,13 @@ Built using Python, Click, and SQLAlchemy ORM, this project ensures persistent d
     python -m venv env
     ```
 4. Navigate to virtual environment
+    On Windows (Command Prompt):
     ```bash
-    source env/bin/activate 
+    env\Scripts\activate
+    ```
+    On macOS/Linux:
+    ```bash
+    source env/bin/activate
     ```
 5. Install dependencies
     ```bash
@@ -42,22 +47,61 @@ Built using Python, Click, and SQLAlchemy ORM, this project ensures persistent d
     ```
 6. Run migrations(Setup database)
     ```
-    alembic upgrade head
+    python -m alembic upgrade head
     ```
 
 ### Usage
 To run the CLI, use:
-    ```bash
-    python -m src.cli 
-    ```
-- Task commands:
-| Command               | Description                                   |
-|-----------------------|-----------------------------------------------|
-| `add-task`           | Add a new task                                |
-| `list-tasks`         | View all tasks                               |
-| `update-task`        | Update an existing task                      |
-| `delete-task`        | Delete a task                                |
-| `mark-task-completed` | Mark a task as completed                     |
-| `filter-tasks`       | Filter tasks by priority, due date, or category |
+ ```bash
+python -m src.cli 
+```
+#### **Task Commands**
+| Command                 | Description                                      |
+|-------------------------|--------------------------------------------------|
+| `add-task`             | Add a new task                                   |
+| `list-tasks`           | View all tasks                                   |
+| `update-task`          | Update an existing task                          |
+| `delete-task`          | Delete a task                                    |
+| `mark-task-completed`  | Mark a task as completed                         |
+| `assign-task`          | Assign a task to a user                          |
+| `filter-tasks`         | Filter tasks by priority, due date, or category  |
 
+---
+
+#### **User Commands**
+| Command                 | Description                                      |
+|-------------------------|--------------------------------------------------|
+| `add-user`             | Add a new user                                   |
+| `list-users`           | View all users                                   |
+| `assign-task`          | Assign a task to a user                          |
+| `show-user-assignments`| Display all tasks assigned to each user          |
+
+---
+
+#### **Category Commands**
+| Command                | Description                                      |
+|------------------------|--------------------------------------------------|
+| `add-category`        | Add a new category                               |
+| `list-categories`     | View all categories                             |
+
+### Contributing
+Want to contribute? Follow these steps:
+1. Fork the repository
+2. Create a new branch 
+    ```bash
+    git checkout -b Your-Feature-Name
+    ```
+3. Make your changes
+4. Commit changes 
+    ```bash
+    git commit -m 'Added new feature'
+    ```
+5. Push to GitHub 
+    ```bash
+    git push origin Your-Feature-Name
+    ```
+6. Submit a Pull Request
+
+### Lisense
+This project is open-source and available under the MIT License.
 
