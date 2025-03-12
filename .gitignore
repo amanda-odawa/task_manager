@@ -1,0 +1,30 @@
+# Ignore the virtual environment
+env/
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore database migrations (optional, unless you need them)
+migrations/
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs (if you ever generate them)
+*.log
+
+# Ignore temporary files and caches
+*.sqlite3
+*.db-journal
+*.swp
+*.swo
+
+# Ignore VS Code settings (if you use VS Code)
+.vscode/
+
+# Ignore Jupyter Notebook checkpoints (if applicable)
+.ipynb_checkpoints/
