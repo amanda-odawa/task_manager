@@ -56,6 +56,10 @@ To run the CLI, use:
  ```bash
  python -m src.cli 
  ```
+To run the following commands, add the command after `python -m src.cli` eg:
+ ```bash
+ python -m src.cli list-categories
+ ``` 
 #### **Task Commands**
 | Command                 | Description                                      |
 |-------------------------|--------------------------------------------------|
